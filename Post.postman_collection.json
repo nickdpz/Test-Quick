@@ -1,0 +1,611 @@
+{
+	"info": {
+		"_postman_id": "dc609bb8-30cf-4cf8-abc8-104e7e3454cd",
+		"name": "Post",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Nicolas",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "3022183843",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ndpastranzamora@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "arepa",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/category/5f245d1983e5c71508fa78de",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								"5f245d1983e5c71508fa78de"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/5f245d1983e5c71508fa78de",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"5f245d1983e5c71508fa78de"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-nouFVycxXN7uh6J3iJ0oBkuK6WM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 18:05:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"\",\n    \"message\": {\n        \"_id\": \"5f245d1983e5c71508fa78de\",\n        \"cover\": \"http://dummyimage.com/800x600.png/99118E/ffffff\",\n        \"name\": \"In the Dark\",\n        \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\",\n        \"price\": 2009,\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tool\",\r\n    \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/category/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"In the Dark\",\r\n   \"price\": 2009,\r\n   \"cover\": \"http://dummyimage.com/800x600.png/99118E/ffffff\",\r\n    \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-nouFVycxXN7uh6J3iJ0oBkuK6WM\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3AqZ-YWrbDOvsyM1q7G4qzS8SGtNT0k9SB.pX20hxv%2BBwjdDu7UN6n0vzrTp2sv4zW9D47ffNRBD3I; Path=/; Expires=Fri, 31 Jul 2020 20:04:10 GMT; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 18:04:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"\",\n    \"message\": {\n        \"_id\": \"5f245d1983e5c71508fa78de\",\n        \"cover\": \"http://dummyimage.com/800x600.png/99118E/ffffff\",\n        \"name\": \"In the Dark\",\n        \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\",\n        \"price\": 2009,\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/category/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/5f245d1983e5c71508fa78de",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"5f245d1983e5c71508fa78de"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-nouFVycxXN7uh6J3iJ0oBkuK6WM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 18:05:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"\",\n    \"message\": {\n        \"_id\": \"5f245d1983e5c71508fa78de\",\n        \"cover\": \"http://dummyimage.com/800x600.png/99118E/ffffff\",\n        \"name\": \"In the Dark\",\n        \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\",\n        \"price\": 2009,\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Register Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\":[\"5f2f021cf7b78c34a86e9dcb\"],\r\n    \"title\":\"Como Vivir en Medellin 5\",\r\n    \"description\":\"s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum\",\r\n    \"slug\":\"como-vivir-medellin-3\",\r\n    \"shortDescription\":\"when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/post/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"post",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Buy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product\":[\"5f245d1983e5c71508fa78de\",\"5f245e4f81a2513dc08e6432\"],\r\n    \"productCount\":[1,2],\r\n    \"name\":\"Paco\",\r\n    \"phone\":303212121,\r\n    \"email\":\"ndpastran@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/buy/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"buy",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-KH1f0rGiJK7MuJT7LCSQfSaXFec\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 18:57:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"\",\n    \"message\": \"5f24697fc5efd61eb0ed4475\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/post/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"post",
+								""
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "5f2efabaf5549f547c49e7f0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Buys for a User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/buy/?user=5f24697fc5efd61eb0ed4475",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"buy",
+										""
+									],
+									"query": [
+										{
+											"key": "user",
+											"value": "5f24697fc5efd61eb0ed4475"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "188"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bc-5BNNE2+lJufly5QhnR4AmPCntls\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 18:58:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"\",\n    \"message\": [\n        {\n            \"product\": [\n                \"5f245d1983e5c71508fa78de\",\n                \"5f245e4f81a2513dc08e6432\"\n            ],\n            \"productCount\": [\n                1,\n                2\n            ],\n            \"_id\": \"5f24697fc5efd61eb0ed4476\",\n            \"user\": \"5f24697fc5efd61eb0ed4475\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get Buys",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/buy/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"buy",
+										""
+									],
+									"query": [
+										{
+											"key": "user",
+											"value": "5f2464fa59114b1668d7b464",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "352"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"160-CFYws8NTSSBQg7ZruPWOOIMTk9E\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 18:57:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"\",\n    \"message\": [\n        {\n            \"product\": [\n                \"5f245d1983e5c71508fa78de\",\n                \"5f245e4f81a2513dc08e6432\"\n            ],\n            \"productCount\": [\n                1,\n                2\n            ],\n            \"_id\": \"5f246976c5efd61eb0ed4474\",\n            \"user\": \"5f246976c5efd61eb0ed4473\",\n            \"__v\": 0\n        },\n        {\n            \"product\": [\n                \"5f245d1983e5c71508fa78de\",\n                \"5f245e4f81a2513dc08e6432\"\n            ],\n            \"productCount\": [\n                1,\n                2\n            ],\n            \"_id\": \"5f24697fc5efd61eb0ed4476\",\n            \"user\": \"5f24697fc5efd61eb0ed4475\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "SignInBasic",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cfeba2e0-7896-48a3-8e78-db286b835f19",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "arepa",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ndpastranzamora@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{url}}/auth/sign-in",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"sign-in"
+					]
+				},
+				"description": "Envia un Query Multiple"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
