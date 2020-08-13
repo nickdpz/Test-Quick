@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions';
 import { Link } from 'react-router-dom';
 import './styles/Login.css';
-import Header from '../components/Header';
 import PageLoading from '../components/PageLoading';
 
 const Login = (props) => {
@@ -36,7 +35,6 @@ const Login = (props) => {
     }
     return (
         <>
-            <Header />
             <section className='login'>
                 <section className='login__container'>
                     <h2>Inicia sesión</h2>

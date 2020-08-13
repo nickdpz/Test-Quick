@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './styles/Home.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer'
 import { Link } from 'react-router-dom';
 import api from '../utils/api'
 import { connect } from 'react-redux';
@@ -27,18 +25,14 @@ class Home extends Component {
 
     render() {
         return (
-            <>
-                <Header />
-                <div className="container mt-5">
-                    <h1>Hola {this.props.user.name}<br />
+            <div className="container mt-5">
+                <h1>Hola {this.props.user.name}<br />
                     Estamos encantados de tenerte</h1>
-                    <Link to='/post'>
-                        Crea Un Nuevo Post
+                <Link to='/post'>
+                    Crea Un Nuevo Post
                 </Link>
-                    <PostsContainer post={this.props.post} />
-                </div>
-                <Footer />
-            </>
+                <PostsContainer post={this.props.post} />
+            </div>
         );
     }
 };

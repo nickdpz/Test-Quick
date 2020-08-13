@@ -19,9 +19,6 @@ const Header = (props) => {
     props.logoutRequest({});
     window.location.href = '/login';
   };
-  const handleProfile = () => {
-    props.history.push('/');
-  }
 
   return (
     <header className='isGreen header'>
@@ -37,7 +34,9 @@ const Header = (props) => {
         </div>
         <ul>
           {hasUser ?
-            <li><a href='#files' onClick={handleProfile} >{user.name}</a></li> :
+            <li><Link to='/profile'>
+              {user.name}
+            </Link></li> :
             null}
           {hasUser ?
             <li><a href='#logout' onClick={handleLogout}>Cerrar Sesión</a></li> : (
