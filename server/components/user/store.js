@@ -41,17 +41,17 @@ const listUsers = async (filter) => {
     return users
 }
 
-const deleteUser = (id, password) => {
+const deleteUser = async (id, password) => {
     const isAuth = await verifyUser(id, password)
     if (!isAuth) {
         throw (new Error('No Authenticate User'))
     }
-    Model.deleteOne({
+    await Model.deleteOne({
         _id: id,
     });
 }
 
-const verifyUser = (id, password) => {
+const verifyUser = async (id, password) => {
     const foundUser = await Model.findOne({
         _id: id,
     });
@@ -67,5 +67,6 @@ module.exports = {
     getUser,
     listUsers,
     updateUser,
-    deleteUser
+    deleteUser,
+    verifyUser
 }

@@ -16,8 +16,8 @@ const getPostById = async (postId) => {
     return post
 }
 
-const deletePost = (id) => {
-    Model.deleteOne({
+const deletePost = async (id) => {
+    await Model.deleteOne({
         _id: id,
     });
 }

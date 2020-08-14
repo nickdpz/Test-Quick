@@ -12,6 +12,7 @@ const validationUsers = {
     ],
     customer: [
         'update:user',
+        'delete:user',
         'create:post',
         'delete:post',
         'get:posts',

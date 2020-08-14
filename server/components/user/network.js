@@ -23,9 +23,10 @@ router.patch('/',
 
 router.delete('/',
     passport.authenticate('jwt', { session: false }),
-    usersValidationHandler('update:user'),
+    usersValidationHandler('delete:user'),
     async (req, res) => {
-        const { id, password } = req.body;
+        const id = req.user._id;
+        const { password } = req.body;
         try {
             const info = await controller.deleteUser(id, password);
             response.success(req, res, info, 201)

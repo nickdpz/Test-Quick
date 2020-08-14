@@ -59,8 +59,8 @@ const deletePost = (userId, userPass, postId) => {
             reject(new Error("No Authenticate"))
         }
         storePost.deletePost(postId)
-            .then((messages) => {
-                resolve(messages)
+            .then(() => {
+                resolve("ok")
             })
             .catch(e => {
                 reject(e)
