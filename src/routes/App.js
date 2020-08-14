@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import CreatePost from '../pages/CreatePost';
 import Login from '../pages/Login';
 import Register from '../pages/Register'
+import Profile from '../pages/Profile'
 import { connect } from 'react-redux';
 import Layout from '../components/Layout';
 
@@ -20,6 +21,7 @@ const App = (props) => {
           <Route exact path="/category/:categoryId" component={Home} />
           <Route exact path='/register' component={Register} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/profile' component={isLogged ? Profile : Login} />
           <Route component={NotFound} />
         </Switch>
       </Layout>

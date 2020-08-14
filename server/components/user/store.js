@@ -4,7 +4,31 @@ const addUser = async (newUser) => {
     const myUser = new Model(newUser)
     myUser.password = await myUser.encryptPassword(newUser.password);
     const addUser = myUser.save()
+    delete addUser.password;
     return addUser
+}
+
+const updateUser = async (id, password, email = undefined, phone = undefined) => {
+    const foundUser = await Model.findOne({
+        _id: id,
+    });
+    if (!foundUser) {
+        throw (new Error('No Authenticate User'))
+    }
+    const isAuth = await foundUser.equalPassword(password);
+    if (!isAuth) {
+        throw (new Error('No Authenticate User'))
+    }
+    if (email) {
+        foundUser.email = email;
+    }
+    if (phone) {
+        foundUser.phone = phone;
+    }
+    foundUser.dateUpdate = new Date();
+    const updateUser = await foundUser.save();
+    delete updateUser.password;
+    return updateUser;
 }
 
 const getUser = async (filter) => {
@@ -20,5 +44,6 @@ const listUsers = async (filter) => {
 module.exports = {
     addUser,
     getUser,
-    listUsers
+    listUsers,
+    updateUser
 }

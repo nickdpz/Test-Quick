@@ -3,8 +3,6 @@ import './styles/CreatePost.css';
 import api from '../utils/api';
 import sweetAlert from 'sweetalert2';
 import PageLoading from '../components/PageLoading';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { connect } from 'react-redux';
 import { addCategory } from '../actions'
 import getCookie from '../utils/getCookie'

@@ -20,19 +20,19 @@ router.post('/sign-in', async (req, res, next) => {
                         next(error);
                         return false;
                     } else {
-                        const { _id: id, name, email } = user;
+                        const { _id: id, name, email, phone } = user;
 
                         const payload = {
                             sub: id,
                             name,
-                            email,
+                            email
                         };
 
                         const token = jwt.sign(payload, process.env.AUTH_JWT_SECRET, {
                             expiresIn: '15m'
                         });
 
-                        return res.status(200).json({ token, user: { id, name, email } });
+                        return res.status(200).json({ token, user: { id, name, email, phone } });
                     }
                 });
             }

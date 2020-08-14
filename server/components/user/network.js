@@ -8,6 +8,19 @@ const usersValidationHandler = require('../../utils/middleware/userValidationHan
 // JWT strategy
 require('../../utils/auth/jwt');
 
+router.patch('/',
+    passport.authenticate('jwt', { session: false }),
+    usersValidationHandler('update:user'),
+    async (req, res) => {
+        const { id, password, email, phone } = req.body;
+        try {
+            const info = await controller.updateUser(id, password, email, phone);
+            response.success(req, res, info, 201)
+        } catch (e) {
+            response.error(req, res, 'Información Invalida', 300, e)
+        }
+    })
+
 router.post('/', async (req, res) => {
     const { name, email, password, phone } = req.body;
     try {
@@ -21,7 +34,6 @@ router.post('/', async (req, res) => {
         }
     }
 })
-
 
 router.get('/',
     passport.authenticate('jwt', { session: false }),
