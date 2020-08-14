@@ -3,12 +3,46 @@ import api from '../utils/api'
 import getCookie from '../utils/getCookie';
 import PageLoading from '../components/PageLoading';
 import './styles/PostDetail.css';
+import sweetAlert from 'sweetalert2';
 
 class PostDetail extends Component {
     state = {
         loading: true,
         error: false,
         post: {}
+    }
+
+    alertDanger = () => {
+        sweetAlert.fire({
+            title: 'Are you sure ?',
+            text: "You won't be able to revert this. Input your password",
+            icon: 'warning',
+            input: 'password',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            allowOutsideClick: () => !sweetAlert.isLoading(),
+            preConfirm: async (login) => {
+                try {
+                    const response = await this.fetchDelete(login);
+                    if (response) {
+                        sweetAlert.fire(
+                            'Deleted!',
+                            'Your post has been deleted.',
+                            'success'
+                        ).then(() => {
+                            this.props.history.push('/');
+                        })
+                    }
+                }
+                catch (error) {
+                    sweetAlert.showValidationMessage(
+                        `Request failed: ${error}`
+                    )
+                }
+            }
+        })
     }
 
     fetchData = async () => {
@@ -25,7 +59,26 @@ class PostDetail extends Component {
             this.setState({ loading: false, error: error });
         }
     };
-    componentDidMount() {
+    fetchDelete = async (passUser) => {
+        this.setState({ loading: true, error: null });
+        const token = getCookie('token');
+        try {
+            const data = await api.deletePost({ postId: this.props.match.params.postId, passUser }, token);
+            if (!data.error) {
+                return data.message;
+            } else {
+                throw (new Error("Error inesperado"))
+            }
+        } catch (error) {
+            this.setState({ loading: false });
+            throw (error)
+        }
+    };
+
+    handleDeletePost = () => {
+        this.fetchDelete();
+    }
+    componentDidMount = () => {
         this.fetchData();
     }
     render() {
@@ -47,6 +100,10 @@ class PostDetail extends Component {
                 <p className="mt-4">
                     {description}
                 </p>
+                <hr className="container-div" />
+
+                <a href="#" className="text-danger" onClick={this.alertDanger}> Eliminar Post</a>
+
             </div>
         );
     }

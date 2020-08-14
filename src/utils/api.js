@@ -32,6 +32,13 @@ const api = {
       headers: { 'Authorization': `Bearer ${token}` }
     })
   },
+  deletePost(data, token) {
+    return callApi('/post/', {
+      method: 'DELETE',
+      body: JSON.stringify(data),
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  },
   updateUser(data, token) {
     return callApi('/user/', {
       method: 'PATCH',
