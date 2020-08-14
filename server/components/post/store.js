@@ -16,8 +16,15 @@ const getPostById = async (postId) => {
     return post
 }
 
+const deletePost = (id) => {
+    Model.deleteOne({
+        _id: id,
+    });
+}
+
 module.exports = {
     addPost,
     getPostByUser,
-    getPostById
+    getPostById,
+    deletePost
 }

@@ -21,6 +21,19 @@ router.patch('/',
         }
     })
 
+router.delete('/',
+    passport.authenticate('jwt', { session: false }),
+    usersValidationHandler('update:user'),
+    async (req, res) => {
+        const { id, password } = req.body;
+        try {
+            const info = await controller.deleteUser(id, password);
+            response.success(req, res, info, 201)
+        } catch (e) {
+            response.error(req, res, 'Información Invalida', 300, e)
+        }
+    })
+
 router.post('/', async (req, res) => {
     const { name, email, password, phone } = req.body;
     try {

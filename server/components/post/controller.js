@@ -52,4 +52,20 @@ const getPostId = (postId) => {
     })
 }
 
-module.exports = { addPost, getPost, getPostId }
+const deletePost = (userId, userPass, postId) => {
+    return new Promise(async (resolve, reject) => {
+        const user = await storeUser.verifyUser(userId, userPass);
+        if (!user) {
+            reject(new Error("No Authenticate"))
+        }
+        storePost.deletePost(postId)
+            .then((messages) => {
+                resolve(messages)
+            })
+            .catch(e => {
+                reject(e)
+            })
+    })
+}
+
+module.exports = { addPost, getPost, getPostId, deletePost }

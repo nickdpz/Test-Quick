@@ -23,12 +23,13 @@ router.post('/',
             })
     })
 
-router.options('/',
+router.delete('/',
     passport.authenticate('jwt', { session: false }),
-    usersValidationHandler('get:post'),
+    usersValidationHandler('delete:post'),
     async (req, res) => {
-        const { user } = req.query;
-        controller.getPost(user)
+        const userId = req.user._id;
+        const { passUser, postId } = req.body;
+        controller.deletePost(userId, passUser, postId)
             .then((info) => {
                 response.success(req, res, info, 201)
             })

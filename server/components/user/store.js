@@ -41,9 +41,31 @@ const listUsers = async (filter) => {
     return users
 }
 
+const deleteUser = (id, password) => {
+    const isAuth = await verifyUser(id, password)
+    if (!isAuth) {
+        throw (new Error('No Authenticate User'))
+    }
+    Model.deleteOne({
+        _id: id,
+    });
+}
+
+const verifyUser = (id, password) => {
+    const foundUser = await Model.findOne({
+        _id: id,
+    });
+    if (!foundUser) {
+        throw (new Error('No Authenticate User'))
+    }
+    const isAuth = await foundUser.equalPassword(password);
+    return isAuth;
+}
+
 module.exports = {
     addUser,
     getUser,
     listUsers,
-    updateUser
+    updateUser,
+    deleteUser
 }
