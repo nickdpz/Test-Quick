@@ -36,7 +36,7 @@ const Login = (props) => {
         <>
             <section className='login'>
                 <section className='login__container'>
-                    <h2>Inicia sesión</h2>
+                    <h2>Inicia Sesión</h2>
                     <form className='login__container--form' onSubmit={handleSubmit}>
                         <div className="form-group">
                             <input

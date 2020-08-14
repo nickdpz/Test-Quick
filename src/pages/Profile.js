@@ -37,7 +37,8 @@ class Profile extends Component {
             this.setState({
                 loading: false,
                 error: null,
-                user: this.props.user
+                user: this.props.user,
+                enabledInput:false
             });
         } catch (e) {
             this.setState({
@@ -68,7 +69,7 @@ class Profile extends Component {
                 <div className='container-switch'>
                     <h4 className='mr-4'>Editar</h4>
                     <label className="switch">
-                        <input type="checkbox" onClick={this.handleCheck} />
+                        <input type="checkbox" checked={this.state.enabledInput} onClick={this.handleCheck} />
                         <span className="slider round"></span>
                     </label>
                 </div>

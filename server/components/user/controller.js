@@ -23,7 +23,7 @@ const addUser = async (name, email, password, phone = undefined) => {
 const updateUser = async (id, password, email, phone = undefined) => {
     try {
         let newUser = await storeUser.updateUser(id, password, email, phone);
-        return ({ id: newUser._id, name: newUser.name, email: newUser.email, phone: newUser.post, dateUpdate: newUser.dateUpdate });
+        return ({ id: newUser._id, name: newUser.name, email: newUser.email, phone: newUser.phone, dateUpdate: newUser.dateUpdate });
     } catch (e) {
         throw (e)
     }

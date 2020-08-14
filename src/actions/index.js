@@ -75,10 +75,10 @@ export const userUpdate = (user, token) => {
 		try {
 			const data = await api.updateUser(user, token);
 			if (!data.error) {
-				document.cookie = `email=${data.user.email}`;
-				document.cookie = `name=${data.user.name}`;
-				document.cookie = `id=${data.user.id}`;
-				await dispatch(updateRequest(data.user));
+				document.cookie = `email=${data.message.email}`;
+				document.cookie = `name=${data.message.name}`;
+				document.cookie = `id=${data.message.id}`;
+				await dispatch(updateRequest(data.message));
 			} else {
 				dispatch(setError({ error: "Bad Request" }));
 			}
