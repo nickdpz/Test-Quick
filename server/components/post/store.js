@@ -7,11 +7,17 @@ const addPost = async (query) => {
 }
 
 const getPostByUser = async (query) => {
-    const buys = await Model.find(query)
-    return buys
+    const post = await Model.find(query)
+    return post
+}
+
+const getPostById = async (postId) => {
+    const post = await Model.findOne({ _id: postId })
+    return post
 }
 
 module.exports = {
     addPost,
     getPostByUser,
+    getPostById
 }

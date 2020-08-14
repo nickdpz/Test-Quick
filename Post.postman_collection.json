@@ -470,7 +470,7 @@
 					]
 				},
 				{
-					"name": "Get Posts",
+					"name": "Get Posts by user Id",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -485,7 +485,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/post/",
+							"raw": "{{url}}/post/?user=5f35e7ab4947902bdcc2f185",
 							"host": [
 								"{{url}}"
 							],
@@ -496,8 +496,151 @@
 							"query": [
 								{
 									"key": "user",
-									"value": "5f2efabaf5549f547c49e7f0",
-									"disabled": true
+									"value": "5f35e7ab4947902bdcc2f185"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Buys for a User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/buy/?user=5f24697fc5efd61eb0ed4475",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"buy",
+										""
+									],
+									"query": [
+										{
+											"key": "user",
+											"value": "5f24697fc5efd61eb0ed4475"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "188"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bc-5BNNE2+lJufly5QhnR4AmPCntls\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 18:58:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"\",\n    \"message\": [\n        {\n            \"product\": [\n                \"5f245d1983e5c71508fa78de\",\n                \"5f245e4f81a2513dc08e6432\"\n            ],\n            \"productCount\": [\n                1,\n                2\n            ],\n            \"_id\": \"5f24697fc5efd61eb0ed4476\",\n            \"user\": \"5f24697fc5efd61eb0ed4475\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get Buys",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/buy/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"buy",
+										""
+									],
+									"query": [
+										{
+											"key": "user",
+											"value": "5f2464fa59114b1668d7b464",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "352"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"160-CFYws8NTSSBQg7ZruPWOOIMTk9E\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 18:57:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"\",\n    \"message\": [\n        {\n            \"product\": [\n                \"5f245d1983e5c71508fa78de\",\n                \"5f245e4f81a2513dc08e6432\"\n            ],\n            \"productCount\": [\n                1,\n                2\n            ],\n            \"_id\": \"5f246976c5efd61eb0ed4474\",\n            \"user\": \"5f246976c5efd61eb0ed4473\",\n            \"__v\": 0\n        },\n        {\n            \"product\": [\n                \"5f245d1983e5c71508fa78de\",\n                \"5f245e4f81a2513dc08e6432\"\n            ],\n            \"productCount\": [\n                1,\n                2\n            ],\n            \"_id\": \"5f24697fc5efd61eb0ed4476\",\n            \"user\": \"5f24697fc5efd61eb0ed4475\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Posts by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/post/?user=5f35e7ab4947902bdcc2f185",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"post",
+								""
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "5f35e7ab4947902bdcc2f185"
 								}
 							]
 						}

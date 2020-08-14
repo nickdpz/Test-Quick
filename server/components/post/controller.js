@@ -40,4 +40,16 @@ const getPost = (userId) => {
     })
 }
 
-module.exports = { addPost, getPost }
+const getPostId = (postId) => {
+    return new Promise(async (resolve, reject) => {
+        storePost.getPostById(postId)
+            .then((messages) => {
+                resolve(messages)
+            })
+            .catch(e => {
+                reject(e)
+            })
+    })
+}
+
+module.exports = { addPost, getPost, getPostId }

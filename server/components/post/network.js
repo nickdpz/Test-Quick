@@ -52,5 +52,18 @@ router.get('/',
             })
     })
 
+router.get('/:id',
+    passport.authenticate('jwt', { session: false }),
+    usersValidationHandler('get:post'),
+    async (req, res) => {
+        controller.getPostId(req.params.id)
+            .then((info) => {
+                response.success(req, res, info, 201)
+            })
+            .catch((e) => {
+                response.error(req, res, 'Información Invalida', 300, e);
+            })
+    })
+
 
 module.exports = router;

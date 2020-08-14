@@ -28,7 +28,7 @@ class Home extends Component {
             <div className="container mt-5">
                 <h1>Hola {this.props.user.name}<br />
                     Estamos encantados de tenerte</h1>
-                <Link to='/post'>
+                <Link to='/new_post'>
                     Crea Un Nuevo Post
                 </Link>
                 <PostsContainer post={this.props.post} />

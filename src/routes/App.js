@@ -17,11 +17,12 @@ const App = (props) => {
       <Layout>
         <Switch>
           <Route exact path="/" component={isLogged ? Home : Login} />
-          <Route exact path="/post" component={isLogged ? CreatePost : Login} />
+          <Route exact path="/new_post" component={isLogged ? CreatePost : Login} />
           <Route exact path="/category/:categoryId" component={Home} />
           <Route exact path='/register' component={Register} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/profile' component={isLogged ? Profile : Login} />
+          <Route exact path="/post/:productId" component={ProductDetails} />
           <Route component={NotFound} />
         </Switch>
       </Layout>
