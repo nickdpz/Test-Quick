@@ -102,7 +102,7 @@ class PostDetail extends Component {
                 </p>
                 <hr className="container-div" />
 
-                <a href="#" className="text-danger" onClick={this.alertDanger}> Eliminar Post</a>
+                <a href="#deleteUser" className="text-danger" onClick={this.alertDanger}> Eliminar Post</a>
 
             </div>
         );

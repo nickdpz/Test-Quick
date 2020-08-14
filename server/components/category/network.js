@@ -10,7 +10,7 @@ require('../../utils/auth/jwt');
 
 router.post('/',
     passport.authenticate('jwt', { session: false }),
-    usersValidationHandler('crate:category'),
+    usersValidationHandler('create:category'),
     (req, res) => {
         const { name, shortDescription } = req.body;
         controller.addCategory(name, shortDescription)
