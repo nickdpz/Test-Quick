@@ -3,14 +3,13 @@ import './styles/CreatePost.css';
 import api from '../utils/api';
 import sweetAlert from 'sweetalert2';
 import PageLoading from '../components/PageLoading';
-import { connect } from 'react-redux';
-import { addCategory } from '../actions'
 import getCookie from '../utils/getCookie'
 
 class CreatePost extends Component {
     state = {
         loading: false,
         error: false,
+        categories: [],
         form: {}
     }
 
@@ -55,7 +54,7 @@ class CreatePost extends Component {
     }
 
 
-    handleSubmit = async e => {
+    handleSubmit = async (e) => {
         e.preventDefault();
         const valuesFilter = Object.keys(this.state.form).filter((value) => {
             return (this.state.form[value] === "")
@@ -80,14 +79,17 @@ class CreatePost extends Component {
     fetchData = async () => {
         try {
             const token = this.getCookie('token');
+            console.log(token);
             const data = await api.getCategories(token);
-            this.props.addCategory(data.message);
+            console.log(data);
+            this.setState({ categories: data.message })
         } catch (error) {
-            this.setState({ post: [] });
+            this.setState({ categories: [] });
         }
     };
 
     componentDidMount() {
+        console.log("hola");
         this.fetchData();
     }
 
@@ -95,10 +97,9 @@ class CreatePost extends Component {
         if (this.state.loading) {
             return <PageLoading />;
         }
-        const categories = this.props.categories;
+        const categories = this.state.categories;
         return (
-
-            <div className="container mt-5">
+            <section className="container my-5">
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Title</label>
@@ -124,7 +125,7 @@ class CreatePost extends Component {
                     <div className="form-group">
                         <label>Categoria</label>
                         <select id="category" name="category" className="form-control">
-                            <option key="0" value="0" disabled selected hidden>Categoria</option>
+                            <option key="0" value="0" selected>Categoria</option>
                             {categories.length > 0 && (
                                 <>
                                     {categories.map((item) => (
@@ -170,20 +171,10 @@ class CreatePost extends Component {
                         <p className="text-danger">{this.props.error.message}</p>
                     )}
                 </form>
-            </div>
+            </section>
         );
     }
 }
 
 
-const mapStateToProps = (state) => {
-    return {
-        categories: state.categories
-    };
-};
-
-const mapDispatchToProps = {
-    addCategory,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);
+export default CreatePost;

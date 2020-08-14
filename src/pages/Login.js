@@ -26,7 +26,6 @@ const Login = (props) => {
         setState({ loading: true, error: null });
         event.preventDefault();
         await props.loginUser(form);
-        setState({ loading: false, error: null });
         props.history.push('/');
     };
 

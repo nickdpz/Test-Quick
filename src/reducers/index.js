@@ -1,5 +1,10 @@
 const reducer = (state, action) => {
 	switch (action.type) {
+		case 'UPDATE_USER':
+			return {
+				...state,
+				user: action.payload,
+			};
 		case 'LOGIN_REQUEST':
 			return {
 				...state,

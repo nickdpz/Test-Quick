@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './styles/Profile.css';
+import { userUpdate } from '../actions';
+import getCookie from '../utils/getCookie';
+import PageLoading from '../components/PageLoading'
 
 class Profile extends Component {
     state = {
@@ -10,7 +13,9 @@ class Profile extends Component {
             phone: 0,
         },
         enabledInput: false,
-        enabledButton: false
+        enabledButton: false,
+        loading: false,
+        error: false,
     }
 
     updateInput = (event) => {
@@ -18,13 +23,28 @@ class Profile extends Component {
             user: {
                 ...this.state.user,
                 [event.target.name]: event.target.value,
-            }
+            },
+            enabledButton: true
         });
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
+        this.setState({ loading: true, error: null });
         event.preventDefault();
-        this.props.history.push('/');
+        const token = getCookie('token');
+        try {
+            await this.props.userUpdate(this.state.user, token);
+            this.setState({
+                loading: false,
+                error: null,
+                user: this.props.user
+            });
+        } catch (e) {
+            this.setState({
+                loading: false,
+                error: e,
+            });
+        }
     };
 
     handleCheck = () => {
@@ -39,6 +59,9 @@ class Profile extends Component {
     }
 
     render() {
+        if (this.state.loading) {
+            return <PageLoading />;
+        }
         return (
             <section className='container my-5' >
                 <h2>{this.props.user.name}</h2>
@@ -73,7 +96,7 @@ class Profile extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <h3>Ingrese Clave Antigua</h3>
+                        <h3>Ingrese Clave </h3>
                         <input
                             name='password'
                             className='form-control'
@@ -89,7 +112,7 @@ class Profile extends Component {
                         type='submit'
                         disabled={!this.state.enabledButton}
                     >
-                        Registrarme
+                        Actualizar
                         </button>
                 </form>
             </section>
@@ -102,5 +125,9 @@ const mapStateToProps = (state) => {
     };
 };
 
+const mapDispatchToProps = {
+    userUpdate,
+};
 
-export default connect(mapStateToProps, null)(Profile);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -32,6 +32,13 @@ const api = {
       headers: { 'Authorization': `Bearer ${token}` }
     })
   },
+  updateUser(data, token) {
+    return callApi('/user/', {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  },
   getCategories(token) {
     return callApi('/category/', {
       method: 'GET',

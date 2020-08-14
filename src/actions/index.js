@@ -11,6 +11,11 @@ export const addPost = (payload) => ({
 	payload,
 });
 
+export const updateRequest = (payload) => ({
+	type: 'UPDATE_USER',
+	payload,
+});
+
 export const addCategory = (payload) => ({
 	type: 'ADD_CATEGORY',
 	payload,
@@ -56,6 +61,24 @@ export const loginUser = (payload) => {
 				document.cookie = `name=${data.user.name}`;
 				document.cookie = `id=${data.user.id}`;
 				await dispatch(loginRequest(data.user));
+			} else {
+				dispatch(setError({ error: "Bad Request" }));
+			}
+		} catch (error) {
+			dispatch(setError(error))
+		}
+	};
+};
+
+export const userUpdate = (user, token) => {
+	return async (dispatch) => {
+		try {
+			const data = await api.updateUser(user, token);
+			if (!data.error) {
+				document.cookie = `email=${data.user.email}`;
+				document.cookie = `name=${data.user.name}`;
+				document.cookie = `id=${data.user.id}`;
+				await dispatch(updateRequest(data.user));
 			} else {
 				dispatch(setError({ error: "Bad Request" }));
 			}
