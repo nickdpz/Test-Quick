@@ -11,6 +11,16 @@
 				{
 					"name": "Get User",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -41,6 +51,58 @@
 								{
 									"key": "phone",
 									"value": "3022183843",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ndpastranzamora@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "arepa",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "5f2efabaf5549f547c49e7f0",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "3022183842",
 									"type": "text"
 								},
 								{
