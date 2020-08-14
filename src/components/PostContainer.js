@@ -1,12 +1,17 @@
 import React from 'react';
 import './styles/PostContainer.css';
+import { Link } from 'react-router-dom';
 
 const ListPosts = (props) => {
     return (
         <div className="list-group list-group-horizontal">
-            <span className="list-group-item list-item-title">{props.post.title}</span>
+            <span className="list-group-item list-item-title">
+                <Link to={`/post/${props.post._id}`}>
+                    <strong>{props.post.title}</strong>
+                </Link>
+            </span>
             <span className="list-group-item list-item-description">{props.post.shortDescription}</span>
-        </div>
+        </div >
     );
 }
 

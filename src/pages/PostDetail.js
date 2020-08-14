@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-//import './styles/Post.css';
-import api from '../api'
+import api from '../utils/api'
+import getCookie from '../utils/getCookie';
+import PageLoading from '../components/PageLoading';
+import './styles/PostDetail.css';
 
-class PostDetails extends Component {
+class PostDetail extends Component {
     state = {
-        loading: false,
+        loading: true,
         error: false,
         post: {}
     }
 
     fetchData = async () => {
         this.setState({ loading: true, error: null });
+        const token = getCookie('token');
         try {
-            const data = await api.getPost(this.props.match.params.postId);
+            const data = await api.getPostId(this.props.match.params.postId, token);
             if (!data.error) {
                 this.setState({ loading: false, post: data.message });
             } else {
@@ -26,13 +29,22 @@ class PostDetails extends Component {
         this.fetchData();
     }
     render() {
+        if (this.state.loading) {
+            return <PageLoading />;
+        }
+        if (this.state.error) {
+            return (
+                <h1>No Existe Post</h1>
+            )
+        }
         const { title, shortDescription, description } = this.state.post;
         return (
-            <div className="container" >
+            <div className="container mt-4 h-100" >
                 <h1>{title}</h1>
-                <h6>{shortDescription}</h6>
-                <hr style="color: #0056b2;" />
-                <p>
+                <h5 className="my-4"> <strong>Resumen :</strong> {shortDescription}</h5>
+
+                <hr className="container-div" />
+                <p className="mt-4">
                     {description}
                 </p>
             </div>
@@ -41,4 +53,4 @@ class PostDetails extends Component {
 }
 
 
-export default PostDetails;
+export default PostDetail;

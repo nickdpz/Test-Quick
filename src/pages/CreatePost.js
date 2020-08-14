@@ -67,7 +67,6 @@ class CreatePost extends Component {
             const token = getCookie('token');
             try {
                 await api.createPost({ ...this.state.form, user: userId }, token);
-                this.setState({ loading: false });
                 this.alertSuccess()
             } catch (error) {
                 this.setState({ loading: false, error: error });
@@ -77,11 +76,9 @@ class CreatePost extends Component {
     };
 
     fetchData = async () => {
+        const token = getCookie('token');
         try {
-            const token = this.getCookie('token');
-            console.log(token);
             const data = await api.getCategories(token);
-            console.log(data);
             this.setState({ categories: data.message })
         } catch (error) {
             this.setState({ categories: [] });
@@ -89,7 +86,6 @@ class CreatePost extends Component {
     };
 
     componentDidMount() {
-        console.log("hola");
         this.fetchData();
     }
 
@@ -97,7 +93,6 @@ class CreatePost extends Component {
         if (this.state.loading) {
             return <PageLoading />;
         }
-        const categories = this.state.categories;
         return (
             <section className="container my-5">
                 <form onSubmit={this.handleSubmit}>
@@ -126,9 +121,9 @@ class CreatePost extends Component {
                         <label>Categoria</label>
                         <select id="category" name="category" className="form-control">
                             <option key="0" value="0" selected>Categoria</option>
-                            {categories.length > 0 && (
+                            {this.state.categories.length > 0 && (
                                 <>
-                                    {categories.map((item) => (
+                                    {this.state.categories.map((item) => (
                                         <option
                                             key={item._id}
                                             value={item._id}

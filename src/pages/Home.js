@@ -9,9 +9,9 @@ import getCookie from '../utils/getCookie';
 
 class Home extends Component {
     fetchData = async () => {
+        const userId = getCookie('id');
+        const token = getCookie('token');
         try {
-            const userId = getCookie('id');
-            const token = getCookie('token');
             const data = await api.getPost(userId, token);
             this.props.addPost(data.message);
         } catch (error) {
@@ -25,12 +25,16 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="container mt-5">
-                <h1>Hola {this.props.user.name}<br />
+            <div className="container mt-5 h-100">
+                <div className="row">
+                    <h1>Hola {this.props.user.name}<br />
                     Estamos encantados de tenerte</h1>
-                <Link to='/new_post'>
-                    Crea Un Nuevo Post
-                </Link>
+                </div>
+                <div className="row">
+                    <span className="my-4">
+                        <Link to='/new_post'>Crea Un Nuevo Post</Link>
+                    </span>
+                </div>
                 <PostsContainer post={this.props.post} />
             </div>
         );

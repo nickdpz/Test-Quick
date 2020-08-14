@@ -51,6 +51,13 @@ const api = {
       headers: { 'Authorization': `Bearer ${token}` }
     })
   },
+  getPostId(postId, token) {
+    return callApi(`/post/${postId}`, {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  }
+  ,
   singIn(data) {
     const { email, password } = data;
     const username = email;
