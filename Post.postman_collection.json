@@ -45,22 +45,59 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Nicolas",
+									"value": "Nata",
 									"type": "text"
 								},
 								{
 									"key": "phone",
-									"value": "3022183843",
+									"value": "3022122243",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "ndpastranzamora@gmail.com",
+									"value": "nata@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "arepa",
+									"value": "empanada",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "empanada",
 									"type": "text"
 								}
 							]
@@ -97,7 +134,7 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "5f2efabaf5549f547c49e7f0",
+									"value": "5f35e7ab4947902bdcc2f185",
 									"type": "text"
 								},
 								{
@@ -219,7 +256,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Tool\",\r\n    \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Travel\",\r\n    \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -470,6 +507,112 @@
 					]
 				},
 				{
+					"name": "Delete Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "passUser",
+									"value": "arepa",
+									"type": "text"
+								},
+								{
+									"key": "postId",
+									"value": "5f36966d8716180504b7c88a",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/post/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"post",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Buy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product\":[\"5f245d1983e5c71508fa78de\",\"5f245e4f81a2513dc08e6432\"],\r\n    \"productCount\":[1,2],\r\n    \"name\":\"Paco\",\r\n    \"phone\":303212121,\r\n    \"email\":\"ndpastran@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/buy/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"buy",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-KH1f0rGiJK7MuJT7LCSQfSaXFec\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 18:57:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"\",\n    \"message\": \"5f24697fc5efd61eb0ed4475\"\n}"
+						}
+					]
+				},
+				{
 					"name": "Get Posts by user Id",
 					"request": {
 						"auth": {
@@ -629,19 +772,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/post/?user=5f35e7ab4947902bdcc2f185",
+							"raw": "{{url}}/post/5f35f432c1fff72d487b85e9",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"post",
-								""
-							],
-							"query": [
-								{
-									"key": "user",
-									"value": "5f35e7ab4947902bdcc2f185"
-								}
+								"5f35f432c1fff72d487b85e9"
 							]
 						}
 					},
@@ -761,7 +898,7 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "SignInBasic",
+			"name": "SignInBasic Admin",
 			"event": [
 				{
 					"listen": "test",
@@ -787,6 +924,57 @@
 						{
 							"key": "username",
 							"value": "ndpastranzamora@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{url}}/auth/sign-in",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"sign-in"
+					]
+				},
+				"description": "Envia un Query Multiple"
+			},
+			"response": []
+		},
+		{
+			"name": "SignInBasic Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79ce9a95-6331-47c9-aad6-93bf0eb9b49f",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "empanada",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "nata@gmail.com",
 							"type": "string"
 						}
 					]
